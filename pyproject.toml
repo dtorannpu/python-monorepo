@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "python-monorepo"
+version = "0.1.0"
+description = ""
+authors = ["dtorannpu <dtorannpu@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.13"
+sample1 = { path = "sample1" }
+sample2 = { path = "sample2" }
+my-lib = {path = "my_lib"}
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.3"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7.2"
+mypy = "^1.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+    "-ra",
+    "-q",
+    "--import-mode=importlib",
+]
+testpaths = [
+    "my_lib/tests",
+    "sample1/tests",
+    "sample2/tests",
+    "integration",
+]
+
+[tool.mypy]
+explicit_package_bases = true
+packages = ["src"]
