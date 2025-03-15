@@ -49,11 +49,16 @@ addopts = [
 
 [tool.tox]
 requires = ["tox>=4.19"]
-env_list = ["3.13", "type"]
+env_list = ["lint", "type", "3.13"]
 
 [tool.tox.env_run_base]
 runner = "uv-venv-lock-runner"
 commands = [["pytest"]]
+
+[tool.tox.env.lint]
+runner = "uv-venv-lock-runner"
+with_dev = true
+commands = [["ruff", "format", "--check"], ["ruff", "check", "."]]
 
 [tool.tox.env.type]
 runner = "uv-venv-lock-runner"
