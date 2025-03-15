@@ -28,9 +28,12 @@ default-groups = [
 ]
 
 [tool.uv.sources]
-sample1 = { path = "sample1" }
-sample2 = { path = "sample2" }
-my-lib = { path = "my_lib" }
+sample1 = { workspace = true }
+sample2 = { workspace = true }
+my_lib = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/*"]
 
 [build-system]
 requires = ["hatchling"]
@@ -43,7 +46,15 @@ addopts = [
     "-q",
     "--import-mode=importlib",
 ]
-testpaths = ["tests"]
 
-[tool.mypy]
-explicit_package_bases = true
+[tool.tox]
+requires = ["tox>=4.19"]
+env_list = ["3.13"]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+commands = [["pytest"]]
+
+#[tool.tox.env.type]
+#runner = "uv-venv-lock-runner"
+#commands = [["mypy", "."]]

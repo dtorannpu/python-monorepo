@@ -3,38 +3,19 @@ on: pull_request
 
 jobs:
   ci:
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        python-version: ["3.13"]
-        poetry-version: ["1.8.4"]
-        os: [ubuntu-22.04]
-    runs-on: ${{ matrix.os }}
+        python: ["3.13"]
+
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+      - name: Setup Python
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Run image
-        uses: abatilo/actions-poetry@a5643c67b5fcc9ac5eddb395c7f61b1b66d86034 # v2.4.0
-        with:
-          poetry-version: ${{ matrix.poetry-version }}
-      - name: Setup a local virtual environment (if no poetry.toml file)
-        run: |
-          poetry config virtualenvs.create true --local
-          poetry config virtualenvs.in-project true --local
-      - uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
-        name: Define a cache for the virtual environment based on the dependencies lock file
-        with:
-          path: ./.venv
-          key: venv-${{ hashFiles('poetry.lock') }}
-      - name: Install the project dependencies
-        run: poetry install
-      - name: Formatter
-        run: poetry run ruff format --check
-      - name: Check
-        run: poetry run ruff check .
-      - name: Mypy
-        run: poetry run mypy .
-      - name: Pytest
-        run: poetry run pytest .
+          python-version: ${{ matrix.python }}
+      - name: Install tox and any other packages
+        run: pip install tox
+      - name: Run tox
+        # Run tox using the version of Python in `PATH`
+        run: tox -e py

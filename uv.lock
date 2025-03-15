@@ -2,6 +2,14 @@ version = 1
 revision = 1
 requires-python = ">=3.13, <4"
 
+[manifest]
+members = [
+    "my-lib",
+    "python-monorepo",
+    "sample1",
+    "sample2",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -23,7 +31,7 @@ wheels = [
 [[package]]
 name = "my-lib"
 version = "0.1.0"
-source = { directory = "my_lib" }
+source = { editable = "packages/my_lib" }
 
 [[package]]
 name = "mypy"
@@ -107,9 +115,9 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "my-lib", directory = "my_lib" },
-    { name = "sample1", directory = "sample1" },
-    { name = "sample2", directory = "sample2" },
+    { name = "my-lib", editable = "packages/my_lib" },
+    { name = "sample1", editable = "packages/sample1" },
+    { name = "sample2", editable = "packages/sample2" },
 ]
 
 [package.metadata.requires-dev]
@@ -147,12 +155,12 @@ wheels = [
 [[package]]
 name = "sample1"
 version = "0.1.0"
-source = { directory = "sample1" }
+source = { editable = "packages/sample1" }
 
 [[package]]
 name = "sample2"
 version = "0.1.0"
-source = { directory = "sample2" }
+source = { editable = "packages/sample2" }
 
 [[package]]
 name = "typing-extensions"
