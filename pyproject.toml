@@ -49,12 +49,13 @@ addopts = [
 
 [tool.tox]
 requires = ["tox>=4.19"]
-env_list = ["3.13"]
+env_list = ["3.13", "type"]
 
 [tool.tox.env_run_base]
 runner = "uv-venv-lock-runner"
 commands = [["pytest"]]
 
-#[tool.tox.env.type]
-#runner = "uv-venv-lock-runner"
-#commands = [["mypy", "."]]
+[tool.tox.env.type]
+runner = "uv-venv-lock-runner"
+with_dev = true
+commands = [["mypy", "."]]
