@@ -1,32 +1,38 @@
-[tool.poetry]
+[project]
 name = "python-monorepo"
 version = "0.1.0"
 description = ""
-authors = ["dtorannpu <dtorannpu@gmail.com>"]
+authors = [{ name = "dtorannpu", email = "dtorannpu@gmail.com" }]
+requires-python = "~=3.13"
 readme = "README.md"
-package-mode = false
+dependencies = [
+    "sample1",
+    "sample2",
+    "my-lib",
+]
 
+[dependency-groups]
+test = ["pytest>=8.3.3,<9"]
+dev = [
+    "ruff>=0.7.2,<0.8",
+    "mypy>=1.13.0,<2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.13"
+[tool.uv]
+package = false
+default-groups = [
+    "test",
+    "dev",
+]
+
+[tool.uv.sources]
 sample1 = { path = "sample1" }
 sample2 = { path = "sample2" }
 my-lib = { path = "my_lib" }
 
-
-[tool.poetry.group.test.dependencies]
-pytest = "^8.3.3"
-
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.7.2"
-mypy = "^1.13.0"
-
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -36,7 +42,6 @@ addopts = [
     "--import-mode=importlib",
 ]
 testpaths = ["tests"]
-
 
 [tool.mypy]
 explicit_package_bases = true
