@@ -1,32 +1,43 @@
-[tool.poetry]
+[project]
 name = "python-monorepo"
 version = "0.1.0"
 description = ""
-authors = ["dtorannpu <dtorannpu@gmail.com>"]
+authors = [{ name = "dtorannpu", email = "dtorannpu@gmail.com" }]
+requires-python = "~=3.13"
 readme = "README.md"
-package-mode = false
+dependencies = [
+    "sample1",
+    "sample2",
+    "my-lib",
+]
 
+[dependency-groups]
+test = [
+    "pytest>=8.3.5",
+]
+dev = [
+    "mypy>=1.15.0",
+    "ruff>=0.11.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.13"
-sample1 = { path = "sample1" }
-sample2 = { path = "sample2" }
-my-lib = { path = "my_lib" }
+[tool.uv]
+package = false
+default-groups = [
+    "test",
+    "dev",
+]
 
+[tool.uv.sources]
+sample1 = { workspace = true }
+sample2 = { workspace = true }
+my_lib = { workspace = true }
 
-[tool.poetry.group.test.dependencies]
-pytest = "^8.3.3"
-
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.7.2"
-mypy = "^1.13.0"
-
+[tool.uv.workspace]
+members = ["packages/*"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -35,8 +46,15 @@ addopts = [
     "-q",
     "--import-mode=importlib",
 ]
-testpaths = ["tests"]
 
+[tool.tox]
+requires = ["tox>=4.19"]
+env_list = ["3.13"]
 
-[tool.mypy]
-explicit_package_bases = true
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+commands = [["pytest"]]
+
+#[tool.tox.env.type]
+#runner = "uv-venv-lock-runner"
+#commands = [["mypy", "."]]
