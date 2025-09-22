@@ -6,31 +6,29 @@ authors = [{ name = "dtorannpu", email = "dtorannpu@gmail.com" }]
 requires-python = ">=3.13"
 readme = "README.md"
 dependencies = [
-    "sample1",
-    "sample2",
-    "my-lib",
 ]
 
 [dependency-groups]
 test = [
-    "pytest>=8.4.1",
+    "pytest>=8.4.2",
+]
+type = [
+    { include-group = "test" },
+    "mypy>=1.13.2",
+]
+lint = [
+    "ruff>=0.13.1",
 ]
 dev = [
-    "mypy>=1.17.1",
-    "ruff>=0.12.9",
+    { include-group = "type" },
+    { include-group = "lint" },
 ]
 
 [tool.uv]
 package = false
 default-groups = [
-    "test",
     "dev",
 ]
-
-[tool.uv.sources]
-sample1 = { workspace = true }
-sample2 = { workspace = true }
-my_lib = { workspace = true }
 
 [tool.uv.workspace]
 members = ["packages/*"]
@@ -40,11 +38,23 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
+pythonpath = [
+    "packages/my_lib/src",
+    "packages/sample1/src",
+    "packages/sample2/src",
+]
 minversion = "6.0"
 addopts = [
     "-ra",
     "-q",
     "--import-mode=importlib",
+]
+
+[tool.mypy]
+mypy_path = [
+    "packages/my_lib/src",
+    "packages/sample1/src",
+    "packages/sample2/src",
 ]
 
 [tool.tox]
@@ -58,12 +68,10 @@ commands = [["pytest"]]
 
 [tool.tox.env.lint]
 runner = "uv-venv-lock-runner"
-with_dev = true
-dependency_groups = ["dev"]
+dependency_groups = ["lint"]
 commands = [["ruff", "format", "--check"], ["ruff", "check", "."]]
 
 [tool.tox.env.type]
 runner = "uv-venv-lock-runner"
-with_dev = true
-dependency_groups = ["dev"]
+dependency_groups = ["type"]
 commands = [["mypy", "."]]
