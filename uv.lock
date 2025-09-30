@@ -2,6 +2,14 @@ version = 1
 revision = 3
 requires-python = ">=3.13, <4"
 
+[manifest]
+members = [
+    "my-lib",
+    "python-monorepo",
+    "sample1",
+    "sample2",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -19,6 +27,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/f2/97/ebf4da567aa6827c9
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2c/e1/e6716421ea10d38022b952c159d5161ca1193197fb744506875fbb87ea7b/iniconfig-2.1.0-py3-none-any.whl", hash = "sha256:9deba5723312380e77435581c6bf4935c94cbfab9b1ed33ef8d238ea168eb760", size = 6050, upload-time = "2025-03-19T20:10:01.071Z" },
 ]
+
+[[package]]
+name = "my-lib"
+version = "0.1.0"
+source = { editable = "packages/my_lib" }
 
 [[package]]
 name = "mypy"
@@ -169,6 +182,16 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ee/bd/d9f33a73de84fafd0146c6fba4f497c4565fe8fa8b46874b8e438869abc2/ruff-0.13.2-py3-none-win_amd64.whl", hash = "sha256:17d95fb32218357c89355f6f6f9a804133e404fc1f65694372e02a557edf8585", size = 13324004, upload-time = "2025-09-25T14:54:06.05Z" },
     { url = "https://files.pythonhosted.org/packages/c3/12/28fa2f597a605884deb0f65c1b1ae05111051b2a7030f5d8a4ff7f4599ba/ruff-0.13.2-py3-none-win_arm64.whl", hash = "sha256:da711b14c530412c827219312b7d7fbb4877fb31150083add7e8c5336549cea7", size = 12484437, upload-time = "2025-09-25T14:54:08.022Z" },
 ]
+
+[[package]]
+name = "sample1"
+version = "0.1.0"
+source = { editable = "packages/sample1" }
+
+[[package]]
+name = "sample2"
+version = "0.1.0"
+source = { editable = "packages/sample2" }
 
 [[package]]
 name = "typing-extensions"
