@@ -2,6 +2,14 @@ version = 1
 revision = 3
 requires-python = ">=3.13, <4"
 
+[manifest]
+members = [
+    "my-lib",
+    "python-monorepo",
+    "sample1",
+    "sample2",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -19,6 +27,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/f2/97/ebf4da567aa6827c9
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2c/e1/e6716421ea10d38022b952c159d5161ca1193197fb744506875fbb87ea7b/iniconfig-2.1.0-py3-none-any.whl", hash = "sha256:9deba5723312380e77435581c6bf4935c94cbfab9b1ed33ef8d238ea168eb760", size = 6050, upload-time = "2025-03-19T20:10:01.071Z" },
 ]
+
+[[package]]
+name = "my-lib"
+version = "0.1.0"
+source = { editable = "packages/my_lib" }
 
 [[package]]
 name = "mypy"
@@ -135,9 +148,9 @@ type = [
 dev = [
     { name = "mypy", specifier = ">=1.13.2" },
     { name = "pytest", specifier = ">=8.4.2" },
-    { name = "ruff", specifier = ">=0.13.1" },
+    { name = "ruff", specifier = ">=0.14.0" },
 ]
-lint = [{ name = "ruff", specifier = ">=0.13.1" }]
+lint = [{ name = "ruff", specifier = ">=0.14.0" }]
 test = [{ name = "pytest", specifier = ">=8.4.2" }]
 type = [
     { name = "mypy", specifier = ">=1.13.2" },
@@ -169,6 +182,16 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/41/77/56cf9cf01ea0bfcc662de72540812e5ba8e9563f33ef3d37ab2174892c47/ruff-0.14.0-py3-none-win_amd64.whl", hash = "sha256:ea95da28cd874c4d9c922b39381cbd69cb7e7b49c21b8152b014bd4f52acddc2", size = 13464628, upload-time = "2025-10-07T18:21:50.318Z" },
     { url = "https://files.pythonhosted.org/packages/c6/2a/65880dfd0e13f7f13a775998f34703674a4554906167dce02daf7865b954/ruff-0.14.0-py3-none-win_arm64.whl", hash = "sha256:f42c9495f5c13ff841b1da4cb3c2a42075409592825dada7c5885c2c844ac730", size = 12565142, upload-time = "2025-10-07T18:21:53.577Z" },
 ]
+
+[[package]]
+name = "sample1"
+version = "0.1.0"
+source = { editable = "packages/sample1" }
+
+[[package]]
+name = "sample2"
+version = "0.1.0"
+source = { editable = "packages/sample2" }
 
 [[package]]
 name = "typing-extensions"
