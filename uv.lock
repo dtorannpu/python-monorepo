@@ -146,14 +146,14 @@ type = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "mypy", specifier = ">=1.13.2" },
+    { name = "mypy", specifier = ">=1.18.2" },
     { name = "pytest", specifier = ">=8.4.2" },
     { name = "ruff", specifier = ">=0.14.0" },
 ]
 lint = [{ name = "ruff", specifier = ">=0.14.0" }]
 test = [{ name = "pytest", specifier = ">=8.4.2" }]
 type = [
-    { name = "mypy", specifier = ">=1.13.2" },
+    { name = "mypy", specifier = ">=1.18.2" },
     { name = "pytest", specifier = ">=8.4.2" },
 ]
 
