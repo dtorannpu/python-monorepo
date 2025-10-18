@@ -3,7 +3,7 @@ name = "python-monorepo"
 version = "0.1.0"
 description = ""
 authors = [{ name = "dtorannpu", email = "dtorannpu@gmail.com" }]
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 readme = "README.md"
 dependencies = [
 ]
@@ -59,7 +59,7 @@ mypy_path = [
 
 [tool.tox]
 requires = ["tox>=4.19"]
-env_list = ["lint", "type", "3.13"]
+env_list = ["lint", "type", "3.14"]
 
 [tool.tox.env_run_base]
 runner = "uv-venv-lock-runner"
