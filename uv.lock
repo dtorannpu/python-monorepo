@@ -2,6 +2,14 @@ version = 1
 revision = 3
 requires-python = ">=3.14"
 
+[manifest]
+members = [
+    "my-lib",
+    "python-monorepo",
+    "sample1",
+    "sample2",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -19,6 +27,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/f2/97/ebf4da567aa6827c9
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2c/e1/e6716421ea10d38022b952c159d5161ca1193197fb744506875fbb87ea7b/iniconfig-2.1.0-py3-none-any.whl", hash = "sha256:9deba5723312380e77435581c6bf4935c94cbfab9b1ed33ef8d238ea168eb760", size = 6050, upload-time = "2025-03-19T20:10:01.071Z" },
 ]
+
+[[package]]
+name = "my-lib"
+version = "0.1.0"
+source = { editable = "packages/my_lib" }
 
 [[package]]
 name = "mypy"
@@ -128,14 +141,14 @@ type = [
 [package.metadata.requires-dev]
 dev = [
     { name = "mypy", specifier = ">=1.18.2" },
-    { name = "pytest", specifier = ">=9.0.0" },
+    { name = "pytest", specifier = ">=9.0.1" },
     { name = "ruff", specifier = ">=0.14.6" },
 ]
 lint = [{ name = "ruff", specifier = ">=0.14.6" }]
-test = [{ name = "pytest", specifier = ">=9.0.0" }]
+test = [{ name = "pytest", specifier = ">=9.0.1" }]
 type = [
     { name = "mypy", specifier = ">=1.18.2" },
-    { name = "pytest", specifier = ">=9.0.0" },
+    { name = "pytest", specifier = ">=9.0.1" },
 ]
 
 [[package]]
@@ -163,6 +176,16 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/fb/02/82240553b77fd1341f80ebb3eaae43ba011c7a91b4224a9f317d8e6591af/ruff-0.14.6-py3-none-win_amd64.whl", hash = "sha256:390e6480c5e3659f8a4c8d6a0373027820419ac14fa0d2713bd8e6c3e125b8b9", size = 14432087, upload-time = "2025-11-21T14:26:10.891Z" },
     { url = "https://files.pythonhosted.org/packages/a5/1f/93f9b0fad9470e4c829a5bb678da4012f0c710d09331b860ee555216f4ea/ruff-0.14.6-py3-none-win_arm64.whl", hash = "sha256:d43c81fbeae52cfa8728d8766bbf46ee4298c888072105815b392da70ca836b2", size = 13520930, upload-time = "2025-11-21T14:26:13.951Z" },
 ]
+
+[[package]]
+name = "sample1"
+version = "0.1.0"
+source = { editable = "packages/sample1" }
+
+[[package]]
+name = "sample2"
+version = "0.1.0"
+source = { editable = "packages/sample2" }
 
 [[package]]
 name = "typing-extensions"
