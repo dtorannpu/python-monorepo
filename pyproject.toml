@@ -17,7 +17,7 @@ type = [
     "mypy==1.19.0",
 ]
 lint = [
-    "ruff==0.14.7",
+    "ruff==0.14.8",
 ]
 dev = [
     { include-group = "type" },
