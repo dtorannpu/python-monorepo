@@ -29,6 +29,7 @@ package = false
 default-groups = [
     "dev",
 ]
+exclude-newer = "7 days"
 
 [tool.uv.workspace]
 members = ["packages/*"]
