@@ -14,7 +14,7 @@ test = [
 ]
 type = [
     { include-group = "test" },
-    "mypy==2.3.0",
+    "mypy==2.3.1",
 ]
 lint = [
     "ruff==0.16.3",
